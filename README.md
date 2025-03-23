@@ -12,6 +12,19 @@ This project fetches news articles, summarizes them, performs sentiment analysis
 - **Translation & TTS:** Translates final sentiment insights to Hindi and converts them to speech.
 - **API Development:** Backend API built using **FastAPI**.
 - **Web Interface:** Uses **Gradio** for a user-friendly interface.
+- - **Performance Optimization:** **Threading** is employed for faster task execution, enabling parallel processing of sentiment analysis, summarization, and topic extraction tasks.
+
+---
+
+## Performance Optimization with Threading
+
+To enhance performance, threading is used in various parts of the application to handle multiple tasks concurrently. For example:
+
+- **Summarization and Sentiment Analysis:** Tasks such as summarizing the text and analyzing sentiments are processed concurrently, reducing the overall time needed for these operations.
+  
+- **Comparative Sentiment Analysis and Topic Overlap:** Sentiment distribution, thematic comparisons, and topic overlap are all handled concurrently, further speeding up the analysis process.
+
+This concurrent processing approach significantly improves the efficiency and responsiveness of the system
 
 ---
 
