@@ -9,3 +9,4 @@ pydantic
 googletrans
 gtts
 httpx
+lxml
