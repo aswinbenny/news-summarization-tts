@@ -1,30 +1,25 @@
 # News Summarization and Sentiment Analysis with TTS
 
 ## Overview
-This project fetches news articles, summarizes them, performs sentiment analysis, extracts topics, and provides a Hindi text-to-speech (TTS) summary. The backend is built using **FastAPI**, and the frontend uses **Gradio** for a simple web interface.
+This project fetches news articles, summarizes them, performs sentiment analysis, extracts topics, and provides a Hindi text-to-speech (TTS) summary. The backend is built using FastAPI, and the frontend uses Gradio for a simple web interface.
 
 ## Features
-- **News Fetching:** Scrapes news articles from **BBC News**.
+- **News Fetching:** Scrapes news articles from BBC News.
 - **Summarization:** Uses `facebook/bart-large-cnn` for text summarization.
-- **Sentiment Analysis:** Uses `distilbert-base-uncased-finetuned-sst-2-english` for sentiment classification.
-- **Topic Extraction:** Uses **BERTopic** to extract key topics from summaries.
+- **Sentiment Analysis:** Uses `ProsusAI/finbert` for financial sentiment classification.
+- **Topic Extraction:** Uses `facebook/bart-large-mnli` for zero-shot classification of key topics from summaries.
 - **Comparative Sentiment Analysis:** Analyzes sentiment trends across multiple articles.
-- **Translation & TTS:** Translates final sentiment insights to Hindi and converts them to speech.
-- **API Development:** Backend API built using **FastAPI**.
-- **Web Interface:** Uses **Gradio** for a user-friendly interface.
-- **Performance Optimization:** **Threading** is employed for faster task execution, enabling parallel processing of sentiment analysis, summarization, and topic extraction tasks.
-
----
+- **Translation & TTS:** Translates final sentiment insights to Hindi using `deep_translator` and converts them to speech with `gTTS`.
+- **API Development:** Backend API built using FastAPI.
+- **Web Interface:** Uses Gradio for a user-friendly interface.
+- **Performance Optimization:** Threading is used to speed up execution, enabling parallel processing of tasks.
 
 ## Performance Optimization with Threading
+To enhance performance, threading is employed to handle multiple tasks concurrently, reducing processing time for:
+- **Summarization and Sentiment Analysis**
+- **Comparative Sentiment Analysis and Topic Overlap**
 
-To enhance performance, threading is used in various parts of the application to handle multiple tasks concurrently. For example:
-
-- **Summarization and Sentiment Analysis:** Tasks such as summarizing the text and analyzing sentiments are processed concurrently, reducing the overall time needed for these operations.
-  
-- **Comparative Sentiment Analysis and Topic Overlap:** Sentiment distribution, thematic comparisons, and topic overlap are all handled concurrently, further speeding up the analysis process.
-
-This concurrent processing approach significantly improves the efficiency and responsiveness of the system
+This improves efficiency and responsiveness.
 
 ---
 
@@ -51,7 +46,7 @@ pip install -r requirements.txt
 ```bash
 uvicorn api:app --reload
 ```
-FastAPI will start at `http://127.0.0.1:8000`.
+FastAPI will start at [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
 ### 5. Run the Gradio Frontend
 ```bash
@@ -63,35 +58,59 @@ Gradio will launch at a local web address.
 
 ## API Endpoints
 
-### 1. Health Check
-**GET `/`**
-- Response: `{ "message": "Hello, World!" }`
+### 1. **Health Check**
+**GET /**
+#### Response:
+```json
+{ "message": "Hello, World!" }
+```
 
-### 2. Analyze Articles
-**POST `/analyze_articles/`**
-- **Request Body:**
-  ```json
-  {
-      "company_name": "Tesla"
-  }
-  ```
-- **Response:**
-  ```json
-  {
-      "analysis_data": { ... },
-      "audio_file": "path/to/audio.mp3",
-      "translated_text": "Hindi summary"
-  }
-  ```
+### 2. **Analyze Articles**
+**POST /analyze_articles/**
+#### Request Body:
+```json
+{
+    "company_name": "Tesla"
+}
+```
+#### Response:
+```json
+{
+    "analysis_data": { ... },
+    "audio_file": "output_hindi.mp3",
+    "translated_text": "Hindi summary"
+}
+```
+
+---
+
+## Model Details
+### 1. **Summarization**  
+- **Model:** `facebook/bart-large-cnn`
+- **Function:** Generates concise summaries of news articles.
+
+### 2. **Sentiment Analysis**  
+- **Model:** `ProsusAI/finbert`
+- **Function:** Classifies sentiment as positive, negative, or neutral with a financial focus.
+
+### 3. **Topic Extraction**  
+- **Model:** `facebook/bart-large-mnli`
+- **Function:** Performs zero-shot classification to extract key topics from summaries.
+
+### 4. **Translation & TTS**  
+- **Library:** `deep_translator`
+- **Function:** Translates English text to Hindi.
+- **Library:** `gTTS`
+- **Function:** Converts Hindi text into speech and saves as `output_hindi.mp3`.
 
 ---
 
 ## Assumptions & Limitations
-- **Topic extraction is performed on the summary** instead of the full text to improve efficiency.
-- **Limited labels for classification** to optimize processing time.
+- **Topic extraction is performed on the summary** instead of the full text for efficiency.
+- **Limited labels for zero-shot classification** to optimize processing time.
 - **Only the first 3200 words** of each article are processed for better performance.
-- **All articles are from BBC News** to simplify scraping.
-- **Hugging Face Transformers and Pipelines are used** for summarization, sentiment analysis, and topic extraction.
+- **Articles are sourced from BBC News** for easier scraping using a single URL pattern.
+- **Hugging Face Transformers and Pipelines** are used for summarization, sentiment analysis, and topic extraction.
 
 ---
 
@@ -102,11 +121,18 @@ Gradio will launch at a local web address.
 
 ---
 
+## API Usage
+- **Backend:** FastAPI serves endpoints for processing articles.
+- **Frontend:** Gradio interacts with the API and displays results.
+- **How to Test:** Use Postman or `curl` commands to send requests to `http://127.0.0.1:8000/analyze_articles/`.
+
+---
+
 ## Contributing
 Feel free to submit pull requests or report issues.
 
 ---
 
 ## License
-This project is licensed under the MIT License.
+This project is licensed under the **MIT License**.
 
