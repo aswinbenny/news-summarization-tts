@@ -6,7 +6,7 @@ torch
 requests
 beautifulsoup4
 pydantic
-googletrans
+deep_translator
 gtts
 httpx
 lxml
