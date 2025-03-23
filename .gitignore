@@ -1,0 +1,23 @@
+# Ignore virtual environments
+.venv/
+venv/
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore environment variables and secrets
+.env
+
+# Ignore Gradio & Hugging Face files
+.gradio/
+flagged/
+
+# Ignore system files (Mac & Windows)
+.DS_Store
+Thumbs.db
+
+# Ignore output files
+output_hindi.mp3

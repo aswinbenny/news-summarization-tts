@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+gradio
+transformers
+torch
+requests
+beautifulsoup4
+pydantic
+googletrans
+gtts
+httpx
