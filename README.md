@@ -12,7 +12,7 @@ This project fetches news articles, summarizes them, performs sentiment analysis
 - **Translation & TTS:** Translates final sentiment insights to Hindi and converts them to speech.
 - **API Development:** Backend API built using **FastAPI**.
 - **Web Interface:** Uses **Gradio** for a user-friendly interface.
-- - **Performance Optimization:** **Threading** is employed for faster task execution, enabling parallel processing of sentiment analysis, summarization, and topic extraction tasks.
+- **Performance Optimization:** **Threading** is employed for faster task execution, enabling parallel processing of sentiment analysis, summarization, and topic extraction tasks.
 
 ---
 
