@@ -15,7 +15,7 @@ This project fetches news articles, summarizes them, performs sentiment analysis
 - **Performance Optimization:** Threading is used to speed up execution, enabling parallel processing of tasks.
 
 ## Live Demo
-Try the deployed version here: **[Hugging Face Spaces Deployment](https://huggingface.co/spaces/aswinbenny/news-sentiment-analysis)**
+Try the deployed version here : **[Hugging Face Spaces Deployment](https://huggingface.co/spaces/aswinbenny/news-sentiment-analysis)**
 
 ## Performance Optimization with Threading
 To enhance performance, threading is employed to handle multiple tasks concurrently, reducing processing time for:
